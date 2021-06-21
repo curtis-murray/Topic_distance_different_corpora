@@ -1,9 +1,0 @@
-Module message: Setting OPENBLAS_NUM_THREADS to 1. Done. 
-rm: cannot remove ‘data/Samples/*’: No such file or directory
-rm: cannot remove ‘data/Tidy_Topics/*’: No such file or directory
-rm: cannot remove ‘data/Tree_Distance/*’: No such file or directory
-Running hSBM on sub: edinburgh
-Running hSBM on sub: houston
-Running hSBM on sub: losangeles
-Running hSBM on sub: formula1
-Running hSBM on sub: melbourne
