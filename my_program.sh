@@ -1,7 +1,6 @@
 #!/bin/bash
 
 rm data/Samples/*
-rm data/Subs.info/*
 rm data/Tidy_Topics/*
 rm data/Tree_Distance/*
 
