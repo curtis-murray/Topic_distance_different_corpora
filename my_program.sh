@@ -3,6 +3,7 @@
 rm data/Samples/*
 rm data/Tidy_Topics/*
 rm data/Tree_Distance/*
+rm log
 
 wait
 source n_sub
@@ -13,9 +14,9 @@ for i in $(seq 1 $(($n_sub/5)))
 do
     for j in $(seq 1 5)
     do
-    python3.9 Python/phoenix_hSBM.py $(($i*5+$j-1)) &
-    now=date
-    echo "Running sub $(($i*5+$j-1)) at $now" >> log
+    python3.9 Python/phoenix_hSBM.py $((($i-1)*5+$j-1)) &
+    now=$date
+    echo "Running sub $((($i-1)*5+$j-1)) at $now" >> log
     done
     wait
 done
