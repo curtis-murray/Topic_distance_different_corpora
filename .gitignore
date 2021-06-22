@@ -1,0 +1,5 @@
+data/Scrape/*
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
