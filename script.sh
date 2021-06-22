@@ -3,7 +3,7 @@
 #SBATCH -N 5                                                    # number of nodes (no MPI, so we only use a single node)
 #SBATCH -n 5                                                    # number of cores
 #SBATCH --ntasks-per-node=1
-#SBATCH --time=3-00:00:00                                       # walltime allocation, which has the format (D-HH:MM:SS), here set to 1 hour
+#SBATCH --time=2-00:00:00                                       # walltime allocation, which has the format (D-HH:MM:SS), here set to 1 hour
 #SBATCH --mem=16GB                                              # memory required per node (here set to 4 GB)
 
 # Notification configuration
