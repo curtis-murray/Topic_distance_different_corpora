@@ -35,8 +35,11 @@ def run_hSBM(texts, titles, sub):
 
     ## fit the model
     #gt.seed_rng(32) ## seed for graph-tool's random number generator --> same results
-    model.fit()
-
+    for i in range(10):
+        model.fit()
+        topics = model.topics(l=0,n=10)
+        if len(topics) > 1:
+            break
     for level in range(1,model.L+1):
 
         group_results = model.get_groups(l = level)
@@ -50,14 +53,6 @@ data = pd.read_csv("data/clean_posts.csv").query("Sub == @sub")
 # Get texts and titles
 texts = data["Content"].values.tolist()
 titles = data["Post_ID"].values.tolist()
-
-sample_ind = np.random.permutation(len(data))[range(round(10000))]
-sample_data = data.loc[sample_ind]
-
-# Get texts and titles
-texts = sample_data["Content"].values.tolist()
-titles = sample_data["Post_ID"].values.tolist()
-
 
 texts = [c.split() for c in texts]
 
