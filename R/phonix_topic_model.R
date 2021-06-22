@@ -52,6 +52,20 @@ clean_posts <- Posts %>%
 	ungroup() %>% 
 	group_by(Sub, Post_ID, Title, Date, Content) %>% 
 	summarise() %>% 
-	ungroup()
+	ungroup() %>% 
+  group_by(Sub) %>% 
+  nest() %>% 
+  mutate(data = map(data, function(data){
+    if(nrow(data)<=10000){
+      return(data)
+    }
+    data %>% 
+      mutate(id = 1:n()) %>% 
+      filter(id %in% sample(1:n(),8000,replace = F)) %>% 
+      select(-id) %>% 
+      return()
+  })) %>% 
+  unnest(data) %>% 
+  ungroup()
 
 write_csv(clean_posts, "data/clean_posts.csv")
