@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 data/Scrape/*
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
-=======
-*.Rout
->>>>>>> ee8b0e9762868f0ad47d428ddef419675c57f59c
