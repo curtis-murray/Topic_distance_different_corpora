@@ -1,0 +1,90 @@
+Module message: Setting OPENBLAS_NUM_THREADS to 1. Done. 
+rm: cannot remove ‘data/Tidy_Topics/*’: No such file or directory
+rm: cannot remove ‘data/Tree_Distance/*’: No such file or directory
+Traceback (most recent call last):
+  File "/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_hSBM.py", line 17, in <module>
+    sub = sub_info.query("sub_id == @sub_id")['sub'].iloc[0]
+  File "/hpcfs/users/a1670295/myconda/envs/gt/lib/python3.9/site-packages/pandas/core/indexing.py", line 895, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+  File "/hpcfs/users/a1670295/myconda/envs/gt/lib/python3.9/site-packages/pandas/core/indexing.py", line 1501, in _getitem_axis
+    self._validate_integer(key, axis)
+  File "/hpcfs/users/a1670295/myconda/envs/gt/lib/python3.9/site-packages/pandas/core/indexing.py", line 1444, in _validate_integer
+    raise IndexError("single positional indexer is out-of-bounds")
+IndexError: single positional indexer is out-of-bounds
+Running hSBM on sub: belfast
+Running hSBM on sub: cardiff
+Running hSBM on sub: adelaide
+Running hSBM on sub: afl
+Running hSBM on sub: edinburgh
+Running hSBM on sub: houston
+Running hSBM on sub: melbourne
+Running hSBM on sub: losangeles
+Running hSBM on sub: formula1
+seq: invalid floating point argument: remainder
+Try 'seq --help' for more information.
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
+python3.9: can't open file '/hpcfs/users/a1670295/Topic_distance_different_corpora/Python/phoenix_tree_dist.py': [Errno 2] No such file or directory
