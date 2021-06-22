@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source n_sub
+
+echo $n_sub
+echo $(($n_sub/5))
+echo $(($n_sub % 5))

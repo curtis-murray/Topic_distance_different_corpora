@@ -7,9 +7,12 @@ rm log
 
 wait
 source n_sub
-remainder=nsub%5
+remainder=n_sub%5
 wait
 t=0
+
+R CMD BATCH R/phoenix_gen_sample_info.R
+
 for i in $(seq 1 $(($n_sub/5)))
 do
     for j in $(seq 1 5)
@@ -20,9 +23,9 @@ do
     done
     wait
 done
-for i in $(seq 1 remainder)
+for i in $(seq 0 $remainder)
 do
-    python3.9 Python/phoenix_hSBM.py $i &
+    python3.9 Python/phoenix_hSBM.py $(($n_sub-$i)) &
     now=date
     echo "Running sub $i at $now" >> log
 done
