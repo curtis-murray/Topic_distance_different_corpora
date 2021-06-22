@@ -89,4 +89,4 @@ d = total_dist(sub1_data, sub2_data)
 
 print("Distance of " + str(d))
 
-pd.DataFrame({"sub": [sub], "distance": [d]}).to_csv("data/Tree_Distance/sub_"+str(sub)+".csv", index = False, header=False)
+pd.DataFrame({"sub1": [sub1], "sub2": [sub2],"distance": [d]}).to_csv("data/Tree_Distance/"+str(sub1)+"_"+str(sub2)+".csv", index = False, header=False)
