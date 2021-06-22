@@ -8,6 +8,7 @@ import numpy as np
 import re
 from itertools import chain
 import sys
+import glob
 
 # The sample id is passed in as an argument
 sub_id = int(sys.argv[1])
@@ -15,6 +16,11 @@ sub_id = int(sys.argv[1])
 # Consult the sub_info dataframe to work out what sub we should work with
 sub_info = pd.read_csv("data/Subs.info/sub_info.csv")
 sub = sub_info.query("sub_id == @sub_id")['sub'].iloc[0]
+
+# Check to see if we already did this one
+if len(glob.glob("data/Samples/words_all_"+sub+"*")) > 0:
+    print("Already done " + sub)
+    quit()
 
 def run_hSBM(texts, titles, sub):
     # Function to run the hSBM given the data, subs
@@ -44,6 +50,15 @@ data = pd.read_csv("data/clean_posts.csv").query("Sub == @sub")
 # Get texts and titles
 texts = data["Content"].values.tolist()
 titles = data["Post_ID"].values.tolist()
+
+sample_ind = np.random.permutation(len(data))[range(round(10000))]
+sample_data = data.loc[sample_ind]
+
+# Get texts and titles
+texts = sample_data["Content"].values.tolist()
+titles = sample_data["Post_ID"].values.tolist()
+
+
 texts = [c.split() for c in texts]
 
 # Run hSBM
