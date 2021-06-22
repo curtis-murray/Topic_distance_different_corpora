@@ -14,7 +14,7 @@ sub1_id = int(sys.argv[1])
 sub2_id = int(sys.argv[2])
 
 # Consult the sub_info dataframe to work out what sub we should work with
-sub_info = pd.read_csv("data/Subs.info/sub_id.csv")
+sub_info = pd.read_csv("data/Subs.info/sub_info.csv")
 sub1 = sub_info.query("sub_id == @sub1_id")['sub'].iloc[0]
 sub2 = sub_info.query("sub_id == @sub2_id")['sub'].iloc[0]
 
