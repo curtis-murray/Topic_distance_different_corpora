@@ -1,26 +1,7 @@
 library(tidyverse)
 library(tidytext)
 
-Vocab <- read_csv("data/clean_posts.csv") %>% 
-  unnest_tokens(word, Content) %>% 
-  group_by(word) %>%
-  summarise() %>% 
-  arrange(word) %>% 
-  mutate(word_ID_full = 1:n())
 
-unweighted_d <- list.files("data/Sampling_Problem/Distances", full.names = TRUE) %>% 
-  as_tibble() %>% 
-  select(path = value) %>% 
-  mutate(data = map(
-    path, ~read_csv(.x)
-  )
-  ) %>% 
-  unnest(data) %>% 
-  left_join(read_csv("data/Sampling_Problem/Samples.info/samples_info.csv"), by = "Sample") %>% 
-  select(-path) %>% 
-  arrange(Sample) %>% 
-  mutate(Unweighted = d/nrow(Vocab)^2) %>% 
-  select(Sample, Sample_prop, Unweighted)
 
 weighted_d <- list.files("data/Tree_Distance/", full.names = TRUE) %>% 
   as_tibble() %>% 
