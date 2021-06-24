@@ -6,6 +6,8 @@ library(highcharter)
 library(htmltools)
 library(htmlwidgets)
 
+max_docs <- 4000
+
 paths <- list.files(path = "data/Scrape/", pattern="*.csv")
 #paths <- list.files(path = "data/Scrape/", pattern="*.csv")
 
@@ -56,12 +58,12 @@ clean_posts <- Posts %>%
   group_by(Sub) %>% 
   nest() %>% 
   mutate(data = map(data, function(data){
-    if(nrow(data)<=10000){
+    if(nrow(data)<=max_docs){
       return(data)
     }
     data %>% 
       mutate(id = 1:n()) %>% 
-      filter(id %in% sample(1:n(),8000,replace = F)) %>% 
+      filter(id %in% sample(1:n(),max_docs,replace = F)) %>% 
       select(-id) %>% 
       return()
   })) %>% 
