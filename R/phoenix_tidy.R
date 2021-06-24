@@ -5,7 +5,6 @@ library(stringr)
 library(tidytext)
 library(dtplyr)
 library(data.table)
-library(tidyfast)
 # ----------------------------------------------------------------
 # Loading Data
 # <- read_csv("data/Cities/Topic_Model/Samples/Network/adj.csv")
@@ -39,7 +38,7 @@ write_csv(Vocab, "data/Vocab/Vocab.csv")
 # Read all p_w_tw files and get adjacency word-topic matrix, join words, construct full word-topic matrix
 
 probs <- tibble(p_w_tw_all_path = p_w_tw_all_path) %>% 
-	mutate(Sub = str_extract(p_w_tw_all_path, "((?<=_)\S+(?=.csv)"),
+	mutate(Sub = str_extract(p_w_tw_all_path, "(?<=_)[A-Za-z]{1,}(?=.csv)"),
 				 Level = str_extract(p_w_tw_all_path, "(?<=p_w_tw)\\d{1,}"),
 	) %>% 
 	map_at(c("Level"), as.double) %>% 
@@ -58,7 +57,7 @@ probs <- tibble(p_w_tw_all_path = p_w_tw_all_path) %>%
 	ungroup()
 
 words_all <- tibble(words_all_all_path = words_all_all_path) %>% 
-	mutate(Sample = str_extract(words_all_all_path, "(?<=_)\S+(?=.csv)")) %>% 
+	mutate(Sub = str_extract(words_all_all_path, "(?<=_)[A-Za-z]+(?=.csv)")) %>% 
 	as_tibble() %>% 
 	mutate(
 		words = map(
