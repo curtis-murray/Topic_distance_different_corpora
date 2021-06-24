@@ -61,7 +61,7 @@ clean_posts <- Posts %>%
     }
     data %>% 
       mutate(id = 1:n()) %>% 
-      filter(id %in% sample(1:n(),8000,replace = F)) %>% 
+      filter(id %in% sample(1:n(),4000,replace = F)) %>% 
       select(-id) %>% 
       return()
   })) %>% 
