@@ -720,7 +720,7 @@ class sbmtm():
             plt.matshow(e.todense())
             plt.savefig("mat_%d.png"%i)
         self.print_summary()
-        
+
     def get_mdl():
         mdl = self.mdl
         return mdl
