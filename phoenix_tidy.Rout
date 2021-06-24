@@ -1,0 +1,733 @@
+
+R version 4.0.3 (2020-10-10) -- "Bunny-Wunnies Freak Out"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(tidyverse)
+Warning: ‘timedatectl’ indicates the non-existent timezone name ‘n/a’
+Warning: Your system is mis-configured: ‘/etc/localtime’ is not a symlink
+Warning: It is strongly recommended to set envionment variable TZ to ‘Australia/Adelaide’ (or equivalent)
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.3     ✔ purrr   0.3.4
+✔ tibble  3.1.2     ✔ dplyr   1.0.6
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.4.0     ✔ forcats 0.5.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+> library(Matrix)
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+> library(matrixStats)
+
+Attaching package: ‘matrixStats’
+
+The following object is masked from ‘package:dplyr’:
+
+    count
+
+> library(stringr)
+> library(tidytext)
+> library(dtplyr)
+> library(data.table)
+
+Attaching package: ‘data.table’
+
+The following objects are masked from ‘package:dplyr’:
+
+    between, first, last
+
+The following object is masked from ‘package:purrr’:
+
+    transpose
+
+> # ----------------------------------------------------------------
+> # Loading Data
+> # <- read_csv("data/Cities/Topic_Model/Samples/Network/adj.csv")
+> 
+> # ----------------------------------------------------------------
+> # Functions
+> 
+> # ----------------------------------------------------------------
+> 
+> # Get the full (relative to Phoenix folder) paths of the p_w_tw (prob(word|topic))
+> p_w_tw_all_path <- list.files(path = "data/Samples/", pattern="p_w_tw*")
+> p_w_tw_all_path <- paste("data/Samples/", p_w_tw_all_path, sep = "")
+> 
+> words_all_all_path <- list.files(path = "data/Samples/", pattern = "words_all*")
+> words_all_all_path <-paste("data/Samples/", words_all_all_path, sep = "")
+> 
+> # Get the full vocab
+> # Vocab <- read_csv(words_all_all_path[str_detect(words_all_all_path, "Full")]) %>% 
+> # 	select(word = `0`)
+> 
+> Vocab <- read_csv("data/clean_posts.csv") %>% 
++ 	unnest_tokens(word, Content) %>% 
++ 	group_by(word) %>%
++ 	summarise(count = n()) %>% 
++ 	mutate(freq = count/sum(count)) %>% 
++ 	arrange(word) %>% 
++ 	mutate(word_ID_full = 1:n())
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  Sub = col_character(),
+  Post_ID = col_character(),
+  Title = col_character(),
+  Date = col_date(format = ""),
+  Content = col_character()
+)
+
+> 
+> write_csv(Vocab, "data/Vocab/Vocab.csv")
+> 
+> # Read all p_w_tw files and get adjacency word-topic matrix, join words, construct full word-topic matrix
+> 
+> probs <- tibble(p_w_tw_all_path = p_w_tw_all_path) %>% 
++ 	mutate(Sub = str_extract(p_w_tw_all_path, "(?<=_)[A-Za-z]{1,}(?=.csv)"),
++ 				 Level = str_extract(p_w_tw_all_path, "(?<=p_w_tw)\\d{1,}"),
++ 	) %>% 
++ 	map_at(c("Level"), as.double) %>% 
++ 	as_tibble() %>% 
++ 	arrange(Sub) %>% 
++ 	mutate(
++ 		mat = map(
++ 			p_w_tw_all_path, 
++ 			~read_csv(.x) %>%
++ 				select(word_ID = X1, everything()) %>%
++ 				mutate(word_ID = word_ID + 1) %>% 
++ 				gather("topic", "p", -word_ID) %>% 
++ 				mutate(topic = as.numeric(topic) + 1) %>% 
++ 				filter(p > 0)
++ 		)) %>% 
++ 	ungroup()
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double(),
+  `7` = col_double(),
+  `8` = col_double(),
+  `9` = col_double(),
+  `10` = col_double(),
+  `11` = col_double(),
+  `12` = col_double(),
+  `13` = col_double(),
+  `14` = col_double(),
+  `15` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double(),
+  `7` = col_double(),
+  `8` = col_double(),
+  `9` = col_double(),
+  `10` = col_double(),
+  `11` = col_double(),
+  `12` = col_double(),
+  `13` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double(),
+  `7` = col_double(),
+  `8` = col_double(),
+  `9` = col_double(),
+  `10` = col_double(),
+  `11` = col_double(),
+  `12` = col_double(),
+  `13` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double(),
+  `7` = col_double(),
+  `8` = col_double(),
+  `9` = col_double(),
+  `10` = col_double(),
+  `11` = col_double(),
+  `12` = col_double(),
+  `13` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double(),
+  `7` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double(),
+  `7` = col_double(),
+  `8` = col_double(),
+  `9` = col_double(),
+  `10` = col_double(),
+  `11` = col_double(),
+  `12` = col_double(),
+  `13` = col_double(),
+  `14` = col_double(),
+  `15` = col_double(),
+  `16` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double(),
+  `7` = col_double(),
+  `8` = col_double(),
+  `9` = col_double(),
+  `10` = col_double(),
+  `11` = col_double(),
+  `12` = col_double(),
+  `13` = col_double(),
+  `14` = col_double(),
+  `15` = col_double(),
+  `16` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double(),
+  `7` = col_double(),
+  `8` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double(),
+  `7` = col_double(),
+  `8` = col_double(),
+  `9` = col_double(),
+  `10` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+There were 45 warnings (use warnings() to see them)
+> 
+> words_all <- tibble(words_all_all_path = words_all_all_path) %>% 
++ 	mutate(Sub = str_extract(words_all_all_path, "(?<=_)[A-Za-z]+(?=.csv)")) %>% 
++ 	as_tibble() %>% 
++ 	mutate(
++ 		words = map(
++ 			words_all_all_path,
++ 			~read_csv(.x) %>% 
++ 				mutate(word_ID = X1 + 1, word = `0`) %>% 
++ 				select(word_ID, word)
++ 		)) %>% 
++ 	group_by(Sub) %>% 
++ 	select(-words_all_all_path) %>% 
++ 	ungroup() %>% 
++ 	arrange(Sub)
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+There were 14 warnings (use warnings() to see them)
+> 
+> # Do we want ALL the vocab in the sampled topic structures? 
+> # Penalty could be added after easily. Lets try that.
+> 
+> tidy_topics_full <- probs %>% 
++ 	left_join(words_all, by = c("Sub")) %>% 	
++ 	dplyr::mutate(tidy_topics = 
++ 									map2(mat, words, ~.x %>%
++ 											 	full_join(.y, by = "word_ID") %>%
++ 											 	left_join(Vocab, by = "word")     # TODO: change to full if necessary
++ 									)
++ 	) %>% 
++ 	select(Sub, Level, tidy_topics) %>% 
++ 	ungroup()
+> 
+> tidy_topics_full %>% 
++ 	unnest(tidy_topics) %>% 
++ 	group_by(Sub, word_ID_full) %>% 
++ 	arrange(Level) %>% 
++ 	summarise(topic = paste(topic, collapse = "-")) %>% 
++ 	write_csv("data/Tidy_Topics/tidy_topics_str.csv")
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+> 
+> proc.time()
+   user  system elapsed 
+ 21.745   5.727  29.531 
