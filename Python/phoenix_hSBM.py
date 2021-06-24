@@ -8,7 +8,6 @@ import numpy as np
 import re
 from itertools import chain
 import sys
-import glob
 
 # The sample id is passed in as an argument
 sub_id = int(sys.argv[1])
@@ -16,11 +15,6 @@ sub_id = int(sys.argv[1])
 # Consult the sub_info dataframe to work out what sub we should work with
 sub_info = pd.read_csv("data/Subs.info/sub_info.csv")
 sub = sub_info.query("sub_id == @sub_id")['sub'].iloc[0]
-
-# Check to see if we already did this one
-if len(glob.glob("data/Samples/words_all_"+sub+"*")) > 0:
-    print("Already done " + sub)
-    quit()
 
 def run_hSBM(texts, titles, sub):
     # Function to run the hSBM given the data, subs
@@ -35,11 +29,8 @@ def run_hSBM(texts, titles, sub):
 
     ## fit the model
     #gt.seed_rng(32) ## seed for graph-tool's random number generator --> same results
-    for i in range(10):
-        model.fit()
-        topics = model.topics(l=0,n=10)
-        if len(topics) > 1:
-            break
+    model.fit()
+
     for level in range(1,model.L+1):
 
         group_results = model.get_groups(l = level)
@@ -53,7 +44,6 @@ data = pd.read_csv("data/clean_posts.csv").query("Sub == @sub")
 # Get texts and titles
 texts = data["Content"].values.tolist()
 titles = data["Post_ID"].values.tolist()
-
 texts = [c.split() for c in texts]
 
 # Run hSBM
