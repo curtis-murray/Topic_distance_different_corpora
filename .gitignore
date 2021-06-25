@@ -1,4 +1,4 @@
-#data/Scrape/*
+data/Scrape/*
 #data/Samples/*
 .Rproj
 .Rproj.user
