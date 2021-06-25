@@ -1,0 +1,134 @@
+
+R version 4.0.3 (2020-10-10) -- "Bunny-Wunnies Freak Out"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> library(tidyverse)
+Warning: ‘timedatectl’ indicates the non-existent timezone name ‘n/a’
+Warning: Your system is mis-configured: ‘/etc/localtime’ is not a symlink
+Warning: It is strongly recommended to set envionment variable TZ to ‘Australia/Adelaide’ (or equivalent)
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.3     ✔ purrr   0.3.4
+✔ tibble  3.1.2     ✔ dplyr   1.0.6
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.4.0     ✔ forcats 0.5.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+> library(Matrix)
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+> library(matrixStats)
+
+Attaching package: ‘matrixStats’
+
+The following object is masked from ‘package:dplyr’:
+
+    count
+
+> library(stringr)
+> library(tidytext)
+> library(dtplyr)
+> library(data.table)
+
+Attaching package: ‘data.table’
+
+The following objects are masked from ‘package:dplyr’:
+
+    between, first, last
+
+The following object is masked from ‘package:purrr’:
+
+    transpose
+
+> # ----------------------------------------------------------------
+> # Loading Data
+> # <- read_csv("data/Cities/Topic_Model/Samples/Network/adj.csv")
+> 
+> # ----------------------------------------------------------------
+> # Functions
+> 
+> # ----------------------------------------------------------------
+> 
+> # Get the full (relative to Phoenix folder) paths of the p_w_tw (prob(word|topic))
+> p_w_tw_all_path <- list.files(path = "data/Samples/", pattern="p_w_tw*")
+> p_w_tw_all_path <- paste("data/Samples/", p_w_tw_all_path, sep = "")
+> 
+> words_all_all_path <- list.files(path = "data/Samples/", pattern = "words_all*")
+> words_all_all_path <-paste("data/Samples/", words_all_all_path, sep = "")
+> 
+> # Get the full vocab
+> # Vocab <- read_csv(words_all_all_path[str_detect(words_all_all_path, "Full")]) %>% 
+> # 	select(word = `0`)
+> 
+> Vocab_sub <- read_csv("data/clean_posts.csv") %>% 
++ 	unnest_tokens(word, Content) %>% 
++ 	group_by(Sub,word) %>%
++ 	summarise(count = n()) %>% 
++ 	mutate(freq = count/sum(count))
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  Sub = col_character(),
+  Post_ID = col_character(),
+  Title = col_character(),
+  Date = col_character(),
+  Content = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+> 
+> Vocab_full <- read_csv("data/clean_posts.csv") %>% 
++   unnest_tokens(word, Content) %>% 
++   group_by(word) %>%
++   summarise(count = n()) %>% 
++   mutate(freq = count/sum(count)) %>% 
++ 	arrange(word) %>% 
++ 	mutate(word_ID_full = 1:n()) %>% 
++   mutate(Sub = "full")
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  Sub = col_character(),
+  Post_ID = col_character(),
+  Title = col_character(),
+  Date = col_character(),
+  Content = col_character()
+)
+
+Error: Problem with `mutate()` column `word_ID_full`.
+ℹ `word_ID_full = 1:n()`.
+ℹ `word_ID_full` must be size 0 or 1, not 2.
+Backtrace:
+    █
+ 1. ├─`%>%`(...)
+ 2. ├─dplyr::mutate(., Sub = "full")
+ 3. ├─dplyr::mutate(., word_ID_full = 1:n())
+ 4. ├─dplyr:::mutate.data.frame(., word_ID_full = 1:n())
+ 5. │ └─dplyr:::mutate_cols(.data, ..., caller_env = caller_env())
+ 6. │   ├─base::withCallingHandlers(...)
+ 7. │   └─mask$eval_all_mutate(quo)
+ 8. └─dplyr:::abort_glue(character(0), list(x_size = 2L), "dplyr:::mutate_incompatible_size")
+ 9.   └─rlang::exec(abort, class = class, !!!data)
+Execution halted
