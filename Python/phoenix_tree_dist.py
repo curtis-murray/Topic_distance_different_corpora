@@ -6,6 +6,7 @@ import cProfile
 import re
 import time
 import sys
+import glob
 
 if not os.path.exists("data/Tree_Distance"):
     os.system("mkdir data/Tree_Distance")
@@ -17,6 +18,14 @@ sub2_id = int(sys.argv[2])
 sub_info = pd.read_csv("data/Subs.info/sub_info.csv")
 sub1 = sub_info.query("sub_id == @sub1_id")['sub'].iloc[0]
 sub2 = sub_info.query("sub_id == @sub2_id")['sub'].iloc[0]
+
+if len(glob.glob("data/Tree_Distance/"+str(sub1)+"_"+str(sub2)+".csv")) > 0:
+    print("Already done " +  sub1 +" and " + sub2)
+    quit()
+
+if len(glob.glob("data/Tree_Distance/"+str(sub2)+"_"+str(sub1)+".csv")) > 0:
+    print("Already done " +  sub2 + " and " + sub1)
+    quit()
 
 #os.system("touch data/Tree_Distance/running_sample_"+str(sample))
 print("Tree distance on sub: " + sub1 + " and: " + sub2)
@@ -54,8 +63,17 @@ def weighted_diff_path_length(i,j, sub1_data, sub2_data, max_depth_sub1, max_dep
     # weighted by p_word(i) and p_word(j)
     d_sub1 = path_length(i,j, sub1_data, max_depth_sub1)
     d_sub2 = path_length(i,j, sub2_data, max_depth_sub2)
-    d = abs((d_sub1 - d_sub2)*p_word(i)*p_word(j))
-    return d
+    p_i = p_word("full", i)
+    p_j = p_word("full", j)
+    p1_i = p_word(sub1, i)
+    p2_i = p_word(sub2, i)
+    p1_j = p_word(sub1, j)
+    p2_j = p_word(sub2, j)
+
+    d[0] = abs(d_sub1-d_sub2)
+    d[1] = d[0]*p_word(i)*p_word(j)
+    d[2] = abs(d_sub1*p_word(sub1_data,i)*p_word(sub1_data,j) - d_sub*p_word2(sub2_data,i)*p_word2(sub_data,j))
+    return 
 
 def p_word(i):
     # Returns p(word | full corpus)

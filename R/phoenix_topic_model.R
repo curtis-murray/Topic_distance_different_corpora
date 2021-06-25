@@ -71,3 +71,4 @@ clean_posts <- Posts %>%
   ungroup()
 
 write_csv(clean_posts, "data/clean_posts.csv")
+

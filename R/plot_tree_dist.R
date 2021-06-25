@@ -27,8 +27,6 @@ D = D %>% t() + D
 rownames(D) <- ids$Sub
 colnames(D) <- ids$Sub
 
-saveRDS(D,file = )
-
 write.table(D, file="../Meeting Reports/Meeting_Book/files/heatmap")
 
 library(superheat)
