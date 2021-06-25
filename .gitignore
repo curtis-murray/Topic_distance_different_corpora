@@ -1,5 +1,6 @@
 data/Scrape/*
-data/Samples/*
+slurm*
+#data/Samples/*
 .Rproj
 .Rproj.user
 .Rhistory

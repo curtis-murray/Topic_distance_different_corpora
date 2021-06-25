@@ -33,15 +33,20 @@ print("Tree distance on sub: " + sub1 + " and: " + sub2)
 # Data loading
 # Tidy topics
 df = pd.read_csv("data/Tidy_Topics/tidy_topics_str.csv")
-# Vocab
-Vocab = pd.read_csv("data/Vocab/Vocab.csv")[['word_ID_full', 'freq']].set_index('word_ID_full').T.to_dict('list')
-n_words = len(Vocab)
 
 # Preprocessing data
 # Filter to full data
 sub1_data = df.query("Sub == @sub1")[["word_ID_full","topic"]].set_index('word_ID_full').T.to_dict('list')
 # Get sample data
 sub2_data = df.query("Sub == @sub2")[["word_ID_full","topic"]].set_index('word_ID_full').T.to_dict('list')
+
+# Vocab
+Vocab_full = pd.read_csv("data/Vocab/Vocab.csv")[['word_ID_full', 'freq']].set_index('word_ID_full').T.to_dict('list')
+
+Vocab_sub1 = pd.read_csv("../data/Vocab/Vocab.csv").query('Sub == @sub1')[['word_ID_full', 'freq']].set_index('word_ID_full').T.to_dict('list')
+Vocab_sub2 = pd.read_csv("../data/Vocab/Vocab.csv").query('Sub == @sub2')[['word_ID_full', 'freq']].set_index('word_ID_full').T.to_dict('list')
+
+n_words = len(Vocab)
 
 # TODO:
 # This is not the most efficent implementation of finding pairwise distances between subs. Can reduce runtime by doing a whole row at a time instead of single element as we recompute everything n times
@@ -63,23 +68,17 @@ def weighted_diff_path_length(i,j, sub1_data, sub2_data, max_depth_sub1, max_dep
     # weighted by p_word(i) and p_word(j)
     d_sub1 = path_length(i,j, sub1_data, max_depth_sub1)
     d_sub2 = path_length(i,j, sub2_data, max_depth_sub2)
-    p_i = p_word("full", i)
-    p_j = p_word("full", j)
-    p1_i = p_word(sub1, i)
-    p2_i = p_word(sub2, i)
-    p1_j = p_word(sub1, j)
-    p2_j = p_word(sub2, j)
+    p_i = Vocab_full.get(i)[0]
+    p_j = Vocab_full.get(j)[0]
+    p1_i = Vocab_sub1.get(i)[0]
+    p2_i = Vocab_sub2.get(i)[0]
+    p1_j = Vocab_sub1.get(j)[0]
+    p2_j = Vocab_sub2.get(j)[0]
 
     d[0] = abs(d_sub1-d_sub2)
-    d[1] = d[0]*p_word(i)*p_word(j)
-    d[2] = abs(d_sub1*p_word(sub1_data,i)*p_word(sub1_data,j) - d_sub*p_word2(sub2_data,i)*p_word2(sub_data,j))
+    d[1] = d[0]*p_i*p_j
+    d[2] = abs(d_sub1*p1_i*p1_j - d_sub2*p2_i*p2_j)
     return 
-
-def p_word(i):
-    # Returns p(word | full corpus)
-    # Given as the empirical frequency
-    p = Vocab.get(i)[0]
-    return p
 
 def path_length(i,j,data, max_depth):
     # Funciton to compute path lengths between distinct words

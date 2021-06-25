@@ -25,13 +25,23 @@ words_all_all_path <-paste("data/Samples/", words_all_all_path, sep = "")
 # Vocab <- read_csv(words_all_all_path[str_detect(words_all_all_path, "Full")]) %>% 
 # 	select(word = `0`)
 
-Vocab <- read_csv("data/clean_posts.csv") %>% 
+Vocab_sub <- read_csv("data/clean_posts.csv") %>% 
 	unnest_tokens(word, Content) %>% 
-	group_by(word) %>%
+	group_by(Sub,word) %>%
 	summarise(count = n()) %>% 
-	mutate(freq = count/sum(count)) %>% 
+	mutate(freq = count/sum(count))
+
+Vocab_full <- read_csv("data/clean_posts.csv") %>% 
+  unnest_tokens(word, Content) %>% 
+  group_by(word) %>%
+  summarise(count = n()) %>% 
+  mutate(freq = count/sum(count)) %>% 
 	arrange(word) %>% 
-	mutate(word_ID_full = 1:n())
+	mutate(word_ID_full = 1:n()) %>% 
+  mutate(Sub = "full")
+
+Vocab <- Vocab_full %>% select(-word_ID_full) %>% bind_rows(Vocab_sub) %>% 
+  left_join(Vocab_full %>% select(word, word_ID_full), by = "word")
 
 write_csv(Vocab, "data/Vocab/Vocab.csv")
 

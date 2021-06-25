@@ -25,7 +25,6 @@ more_stop_words <- c("im", "didnt", "shouldnt", "cant", "wont", "amp",
 										 "https", "http", "x200b", "www.reddit.com",
 										 "utm_name", "ios_app", "utm_medium")
 
-
 clean_posts <- Posts %>% 
 	group_by_all() %>% 
 	summarise() %>% 
@@ -33,6 +32,7 @@ clean_posts <- Posts %>%
 	filter(!is.na(Content)) %>% 
 	mutate(Content = str_replace_all(Content, "’", "'")) %>%
 	mutate(Content = str_replace_all(Content, "\\.\\.\\.", " ")) %>% 
+  mutate(Content = str_replace_all(Content, "[^a-z]", "")) %>% 
 	filter(!is.na(Content)) %>% 
 	select(Sub,Post_ID = `Post ID`, Title, Date = `Publish Date`, Content) %>% 
 	as_tibble() %>% 
@@ -54,21 +54,6 @@ clean_posts <- Posts %>%
 	ungroup() %>% 
 	group_by(Sub, Post_ID, Title, Date, Content) %>% 
 	summarise() %>% 
-	ungroup() %>% 
-  group_by(Sub) %>% 
-  nest() %>% 
-  mutate(data = map(data, function(data){
-    if(nrow(data)<=max_docs){
-      return(data)
-    }
-    data %>% 
-      mutate(id = 1:n()) %>% 
-      filter(id %in% sample(1:n(),max_docs,replace = F)) %>% 
-      select(-id) %>% 
-      return()
-  })) %>% 
-  unnest(data) %>% 
-  ungroup()
+	ungroup() 
 
 write_csv(clean_posts, "data/clean_posts.csv")
-
