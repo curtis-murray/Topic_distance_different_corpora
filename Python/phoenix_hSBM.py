@@ -44,7 +44,7 @@ def run_hSBM(texts, titles, sub):
 
     pd.DataFrame.to_csv(pd.DataFrame(model.words), "".join(["data/Samples/words_all_", sub, ".csv"]))
 
-data = pd.read_csv("data/clean_posts.csv").query("Sub == @sub")
+data = pd.read_csv("data/Clean/" + sub +  ".csv")
 
 # Get texts and titles
 texts = data["Content"].values.tolist()

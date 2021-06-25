@@ -21,36 +21,50 @@ p_w_tw_all_path <- paste("data/Samples/", p_w_tw_all_path, sep = "")
 words_all_all_path <- list.files(path = "data/Samples/", pattern = "words_all*")
 words_all_all_path <-paste("data/Samples/", words_all_all_path, sep = "")
 
+clean_all_path <- list.files(path = "data/Clean", pattern = "*", full.names = T)
+
+subs <- tibble(Sub = str_extract(p_w_tw_all_path, "(?<=_)[A-Za-z1-9]{1,}(?=.csv)")) %>% 
+  group_by(Sub) %>% 
+  summarise() %>% pull(Sub)
+
 # Get the full vocab
 # Vocab <- read_csv(words_all_all_path[str_detect(words_all_all_path, "Full")]) %>% 
 # 	select(word = `0`)
 
-Vocab_sub <- read_csv("data/clean_posts.csv") %>% 
-	unnest_tokens(word, Content) %>% 
-	group_by(Sub,word) %>%
-	summarise(count = n()) %>% 
-	mutate(freq = count/sum(count))
-
-Vocab_full <- read_csv("data/clean_posts.csv") %>% 
+Vocab <- tibble(path = clean_all_path) %>%
+  mutate(data = map(path, function(x){ read_csv(x) %>% select(Content)})) %>% 
+  unnest(data) %>% 
   unnest_tokens(word, Content) %>% 
   group_by(word) %>%
   summarise(count = n()) %>% 
   mutate(freq = count/sum(count)) %>% 
-	arrange(word) %>% 
-	mutate(word_ID_full = 1:n()) %>% 
-  mutate(Sub = "full")
-
-Vocab <- Vocab_full %>% select(-word_ID_full) %>% bind_rows(Vocab_sub) %>% 
-  left_join(Vocab_full %>% select(word, word_ID_full), by = "word")
+  arrange(word) %>% 
+  ungroup() %>% 
+  mutate(word_ID_full = 1:n()) %>% 
+  ungroup()
 
 write_csv(Vocab, "data/Vocab/Vocab.csv")
 
+for(sub in subs){
+  read_csv(paste("data/Clean/", sub, ".csv", sep = "")) %>% 
+    unnest_tokens(word, Content) %>% 
+    group_by(Sub,word) %>%
+    summarise(count = n()) %>% 
+    mutate(freq = count/sum(count)) %>% 
+    ungroup() %>% 
+    left_join(Vocab) %>% 
+    write_csv(paste("data/Vocab/",sub,".csv",sep = ""))
+}
+
 # Read all p_w_tw files and get adjacency word-topic matrix, join words, construct full word-topic matrix
 
+for(sub in subs){
+
 probs <- tibble(p_w_tw_all_path = p_w_tw_all_path) %>% 
-	mutate(Sub = str_extract(p_w_tw_all_path, "(?<=_)[A-Za-z]{1,}(?=.csv)"),
+	mutate(Sub = str_extract(p_w_tw_all_path, "(?<=_)[A-Za-z1-9]{1,}(?=.csv)"),
 				 Level = str_extract(p_w_tw_all_path, "(?<=p_w_tw)\\d{1,}"),
 	) %>% 
+  filter(Sub == sub) %>% 
 	map_at(c("Level"), as.double) %>% 
 	as_tibble() %>% 
 	arrange(Sub) %>% 
@@ -67,7 +81,8 @@ probs <- tibble(p_w_tw_all_path = p_w_tw_all_path) %>%
 	ungroup()
 
 words_all <- tibble(words_all_all_path = words_all_all_path) %>% 
-	mutate(Sub = str_extract(words_all_all_path, "(?<=_)[A-Za-z]+(?=.csv)")) %>% 
+	mutate(Sub = str_extract(words_all_all_path, "(?<=_)[A-Za-z1-9]+(?=.csv)")) %>% 
+  filter(Sub == sub) %>% 
 	as_tibble() %>% 
 	mutate(
 		words = map(
@@ -100,4 +115,6 @@ tidy_topics_full %>%
 	group_by(Sub, word_ID_full) %>% 
 	arrange(Level) %>% 
 	summarise(topic = paste(topic, collapse = "-")) %>% 
-	write_csv("data/Tidy_Topics/tidy_topics_str.csv")
+	write_csv(paste("data/Tidy_Topics/tidy_topics_str_",sub,".csv",sep =""))
+
+}
