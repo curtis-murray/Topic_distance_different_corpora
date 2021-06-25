@@ -1,4 +1,5 @@
 data/Scrape/*
+slurm*
 #data/Samples/*
 .Rproj
 .Rproj.user
