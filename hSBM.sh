@@ -3,7 +3,7 @@
 #SBATCH -N 1                                                    # number of nodes
 #SBATCH -n 16
 #SBATCH --time=0-10:00:00                                       # walltime allocation, which has the format (D-HH:MM:SS), here set to 1 hour
-#SBATCH --mem=16GB                                              # memory required per node (here set to 4 GB)
+#SBATCH --mem=32GB                                              # memory required per node (here set to 4 GB)
 
 # Notification configuration
 #SBATCH --mail-type=END                                         # Send a notification email when the job is done (=END)
