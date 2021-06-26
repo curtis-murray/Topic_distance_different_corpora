@@ -115,6 +115,7 @@ tidy_topics_full %>%
 	group_by(Sub, word_ID_full) %>% 
 	arrange(Level) %>% 
 	summarise(topic = paste(topic, collapse = "-")) %>% 
+	drop_na() %>%
 	write_csv(paste("data/Tidy_Topics/tidy_topics_str_",sub,".csv",sep =""))
 
 }
