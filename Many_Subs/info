@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "Number of files in data/Samples/words*:"
+ls data/Samples/words* | wc -l
+
+echo "Number of files in data/Tree_Distance:"
+ls data/Tree_Distance | wc -l
+
+echo "Number of jobs in queue"
+squeue -u $USER | wc -l
+
+
+

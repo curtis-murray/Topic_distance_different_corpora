@@ -1,0 +1,9 @@
+data/Scrape/*
+slurm*
+data/Samples/*
+.Rproj
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rout
