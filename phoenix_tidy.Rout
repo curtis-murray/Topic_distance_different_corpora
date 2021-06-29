@@ -355,6 +355,16 @@ cols(
   Sub = col_character(),
   Post_ID = col_character(),
   Title = col_character(),
+  Date = col_character(),
+  Content = col_character()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  Sub = col_character(),
+  Post_ID = col_character(),
+  Title = col_character(),
   Date = col_date(format = ""),
   Content = col_character()
 )
@@ -419,7 +429,7 @@ cols(
 +     summarise(count = n()) %>% 
 +     mutate(freq = count/sum(count)) %>% 
 +     ungroup() %>% 
-+     left_join(Vocab) %>% 
++     left_join(Vocab %>% select(word, word_ID_full), by = "word") %>% 
 +     write_csv(paste("data/Vocab/",sub,".csv",sep = ""))
 + }
 
@@ -433,7 +443,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -445,7 +454,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -457,7 +465,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -469,7 +476,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -481,7 +487,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -493,7 +498,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -505,7 +509,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -517,7 +520,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -529,7 +531,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -541,7 +542,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -553,7 +553,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -565,7 +564,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -577,7 +575,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -589,7 +586,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -601,7 +597,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -613,7 +608,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -625,7 +619,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -637,7 +630,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -649,7 +641,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -661,7 +652,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -673,7 +663,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -685,7 +674,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -697,7 +685,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -709,7 +696,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -721,7 +707,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -733,7 +718,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -745,7 +729,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -757,7 +740,6 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-Joining, by = c("word", "count", "freq")
 > 
 > # Read all p_w_tw files and get adjacency word-topic matrix, join words, construct full word-topic matrix
 > 
@@ -818,8 +800,8 @@ Joining, by = c("word", "count", "freq")
 + 	group_by(Sub, word_ID_full) %>% 
 + 	arrange(Level) %>% 
 + 	summarise(topic = paste(topic, collapse = "-")) %>% 
-+ 	write_csv(paste("data/Tidy_Topics/tidy_topics_str_",sub,".csv",sep =""))
-+ 
++ 	drop_na() %>%
++ 	write_csv(paste("data/Tidy_Topics/",sub,".csv",sep =""))
 + }
 
 ── Column specification ────────────────────────────────────────────────────────
@@ -1925,4 +1907,4 @@ There were 50 or more warnings (use warnings() to see the first 50)
 > 
 > proc.time()
    user  system elapsed 
-145.837  14.767 166.338 
+154.995  12.042 181.046 

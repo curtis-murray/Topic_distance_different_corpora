@@ -42,10 +42,10 @@ sub1_data = df1[["word_ID_full","topic"]].set_index('word_ID_full').T.to_dict('l
 sub2_data = df2[["word_ID_full","topic"]].set_index('word_ID_full').T.to_dict('list')
 
 # Vocab
-Vocab_full = pd.read_csv("../data/Vocab/Vocab.csv")[['word_ID_full', 'freq']].set_index('word_ID_full').T.to_dict('list')
+Vocab_full = pd.read_csv("data/Vocab/Vocab.csv")[['word_ID_full', 'freq']].set_index('word_ID_full').T.to_dict('list')
 
-Vocab_sub1 = pd.read_csv("../data/Vocab/"+sub1+".csv")[['word_ID_full', 'freq']].set_index('word_ID_full').T.to_dict('list')
-Vocab_sub2 = pd.read_csv("../data/Vocab/"+sub2+".csv")[['word_ID_full', 'freq']].set_index('word_ID_full').T.to_dict('list')
+Vocab_sub1 = pd.read_csv("data/Vocab/"+sub1+".csv")[['word_ID_full', 'freq']].set_index('word_ID_full').T.to_dict('list')
+Vocab_sub2 = pd.read_csv("data/Vocab/"+sub2+".csv")[['word_ID_full', 'freq']].set_index('word_ID_full').T.to_dict('list')
 
 # Set key-values to 0 for keys not in Vocab_subs
 keys_sub1 = list(Vocab_sub1.keys())
