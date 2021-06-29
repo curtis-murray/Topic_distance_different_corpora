@@ -42,10 +42,10 @@ sub1_data = df1[["word_ID_full","topic"]].set_index('word_ID_full').T.to_dict('l
 sub2_data = df2[["word_ID_full","topic"]].set_index('word_ID_full').T.to_dict('list')
 
 # Vocab
-Vocab_full = pd.read_csv("../data/Vocab/Vocab.csv")[['word_ID_full', 'freq']].set_index('word_ID_full').T.to_dict('list')
+Vocab_full = pd.read_csv("data/Vocab/Vocab.csv")[['word_ID_full', 'freq']].set_index('word_ID_full').T.to_dict('list')
 
-Vocab_sub1 = pd.read_csv("../data/Vocab/"+sub1+".csv")[['word_ID_full', 'freq']].set_index('word_ID_full').T.to_dict('list')
-Vocab_sub2 = pd.read_csv("../data/Vocab/"+sub2+".csv")[['word_ID_full', 'freq']].set_index('word_ID_full').T.to_dict('list')
+Vocab_sub1 = pd.read_csv("data/Vocab/"+sub1+".csv")[['word_ID_full', 'freq']].set_index('word_ID_full').T.to_dict('list')
+Vocab_sub2 = pd.read_csv("data/Vocab/"+sub2+".csv")[['word_ID_full', 'freq']].set_index('word_ID_full').T.to_dict('list')
 
 # Set key-values to 0 for keys not in Vocab_subs
 keys_sub1 = list(Vocab_sub1.keys())
@@ -77,50 +77,41 @@ def total_dist(sub1_data, sub2_data):
     # Note: We only need the element of the upper triangle that correspond to words in the subs of interest
     for i in list(set(range(1,n_words+1)).intersection(set(keys_both))):
         for j in list(set(range(i+1,n_words+1)).intersection(set(keys_both))):
-            total_d += weighted_diff_path_length(i,j, sub1_data, sub2_data, max_depth_sub1, max_depth_sub2)
+            part_d = weighted_diff_path_length(i,j, sub1_data, sub2_data, max_depth_sub1, max_depth_sub2)
+            total_d = [total_d[x] + part_d[x] for x in range(0,4)]
     return total_d
 
 def weighted_diff_path_length(i,j, sub1_data, sub2_data, max_depth_sub1, max_depth_sub2):
     # Computed the weighted difference in path lenghts
     # weighted by p_word(i) and p_word(j)
-
     # Distance container
     d = [0,0,0,0]
-
     # Find path lengths
     d_sub1 = path_length(i,j, sub1_data, max_depth_sub1)
     d_sub2 = path_length(i,j, sub2_data, max_depth_sub2)
-
     # Overall prob of words in corpora
     p_i = Vocab_full.get(i)[0]
     p_j = Vocab_full.get(j)[0]
-
     # Prop of words in sub corpus
     p1_i = Vocab_sub1.get(i)[0]
     p2_i = Vocab_sub2.get(i)[0]
     p1_j = Vocab_sub1.get(j)[0]
     p2_j = Vocab_sub2.get(j)[0]
-
     # Prob of words in merged sub corpus TODO: weight by total number of words?
     p12_i = (p1_i + p2_i)/2
     p12_j = (p1_j + p2_j)/2
-
     # Unweighted distance
     d[0] = abs(d_sub1-d_sub2)
-
     # Corpora weighted distance
     d[1] = d[0]*p_i*p_j
-
     # Corpus weighted distance
     d[2] = d[0]*p12_i*p12_j
-
     # Full weighted distance
     d[3] = abs(d_sub1*p1_i*p1_j - d_sub2*p2_i*p2_j)
     return d
 
 def path_length(i,j,data, max_depth):
     # Funciton to compute path lengths between distinct words
-
     topic_i = data.get(i)
     topic_j = data.get(j)
     # If either or both words are not part of the data return the max path length (2*depth)
