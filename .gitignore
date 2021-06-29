@@ -6,7 +6,4 @@ data/Samples/*
 .Rhistory
 .RData
 .Ruserdata
-<<<<<<< HEAD
-=======
 *.Rout
->>>>>>> 1909e400c0177e7929125adbdb393402c412c1c5

@@ -1,5 +1,9 @@
 Sub,word,count,freq,word_ID_full
+<<<<<<< HEAD
 edinburgh,abandoned,5,9.343349403894308e-5,97
+=======
+edinbuSandoned,5,9.343349403894308e-5,97
+>>>>>>> 7125d8600cbe925e08f5c3c59ba5292599b54106
 edinburgh,abilities,5,9.343349403894308e-5,229
 edinburgh,abroad,15,2.8030048211682924e-4,389
 edinburgh,absolute,10,1.8686698807788616e-4,415
