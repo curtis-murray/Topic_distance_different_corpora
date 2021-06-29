@@ -52,7 +52,11 @@ for(sub in subs){
     summarise(count = n()) %>% 
     mutate(freq = count/sum(count)) %>% 
     ungroup() %>% 
+<<<<<<< HEAD
     left_join(Vocab) %>% 
+=======
+    left_join(Vocab %>% select(word, word_ID_full), by = "word") %>% 
+>>>>>>> 1909e400c0177e7929125adbdb393402c412c1c5
     write_csv(paste("data/Vocab/",sub,".csv",sep = ""))
 }
 
@@ -116,6 +120,10 @@ tidy_topics_full %>%
 	arrange(Level) %>% 
 	summarise(topic = paste(topic, collapse = "-")) %>% 
 	drop_na() %>%
+<<<<<<< HEAD
 	write_csv(paste("data/Tidy_Topics/tidy_topics_str_",sub,".csv",sep =""))
 
+=======
+	write_csv(paste("data/Tidy_Topics/",sub,".csv",sep =""))
+>>>>>>> 1909e400c0177e7929125adbdb393402c412c1c5
 }
