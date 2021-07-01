@@ -1,5 +1,15 @@
 library(tidyverse)
 library(tidytext)
+library(plotly)
+
+posts <- tibble(path = list.files("data/Clean",full.names = T)) %>%  
+  mutate(data = map(path,~read_csv(.x) %>% select(Content,Sub))) %>% 
+  unnest(data) %>% 
+  group_by(Sub) %>% 
+  summarise(count = n()) %>% 
+  arrange(-count) %>% 
+  transmute(sub = Sub,size = count/max(count))
+
 
 weighted_d <- list.files("data/Tree_Distance", full.names = TRUE) %>% 
   as_tibble() %>% 
@@ -72,11 +82,6 @@ heatmaply(D,colors = c("white", "red"), grid_gap = 1,
           revC=T,main = "Distances between subreddits",
           file = paste("Figures/heatmap_",dist,".html",sep = ""), dend_hoverinfo = F)
 
-posts <- read_csv("data/clean_posts.csv") %>% 
-  group_by(Sub) %>% 
-  summarise(count = n()) %>%
-  mutate(size = count/max(count)) %>% 
-  select(sub = "Sub", size)
 
 library(tsne)
 library(umap)
@@ -89,7 +94,7 @@ data_mds <- D %>% cmdscale() %>%
 p_mds <- data_mds %>% 
   ggplot() + 
   geom_point(aes(V1,V2,size = size),show.legend = F) + 
-  ggrepel::geom_label_repel(aes(V1,V2, label= sub), max_overlaps = 999) + 
+  ggrepel::geom_label_repel(aes(V1,V2, label= sub), max.overlaps = 999) + 
   theme_void()
 
 p_mds
@@ -105,7 +110,7 @@ data_tsne <- D %>% tsne(perplexity = 2) %>%
 p_tsne <- data_tsne %>% 
   ggplot() + 
   geom_point(aes(V1,V2,size = size),show.legend = F) + 
-  ggrepel::geom_label_repel(aes(V1,V2, label= sub), max_overlaps = 999) + 
+  ggrepel::geom_label_repel(aes(V1,V2, label= sub), max.overlaps = 999) + 
   theme_void()
 
 p_tsne
@@ -125,11 +130,39 @@ data_umap <-  D %>% umap(config = custom.config) %>% .$layout %>%
 p_umap <- data_umap %>% 
   ggplot() + 
   geom_point(aes(V1,V2,size = size),show.legend = F) + 
-  ggrepel::geom_label_repel(aes(V1,V2, label= sub), max_overlaps = 999) + 
+  ggrepel::geom_text_repel(aes(V1,V2, label = sub), max.overlaps = 999) + 
   theme_void() 
 
 p_umap
 
 p_umap %>% ggsave(filename = paste("Figures/p_umap_",dist,".pdf",sep =""),device = "pdf", width = 6, height = 4)
 p_umap %>% ggsave(filename = paste("../Meeting Reports/Meeting_Book/files/Figures/p_umap_",dist,".png",sep = ""),device = "png", width = 6, height = 4)
+
+custom.config = umap.defaults
+custom.config$n_neighbors = 12
+custom.config$n_components = 3
+
+set.seed(12345)
+data_umap <-  D %>% umap(config = custom.config) %>% 
+  .$layout %>%  #gets the results
+  as_tibble() %>%
+  mutate(sub = rownames(D)) %>% 
+  left_join(posts) 
+
+p <- plot_ly(data_umap, x = ~V1, y = ~V2, z = ~V3, 
+             type = 'scatter3d', mode = 'markers',
+             marker = list(size = ~(size)^(1/3)*100),
+             name = "z") %>% 
+  add_trace(type='scatter3d', 
+            mode='text', 
+            x = data_umap$V1,
+            y = data_umap$V2,
+            z = data_umap$V3,
+            text = data_umap$sub,
+            size = data_umap$size,
+            showlegend=F, 
+            inherit=F)
+
+htmlwidgets::saveWidget(as_widget(p), paste("Figures/p_umap_3_",dist,".html",sep =""))
+
 }
