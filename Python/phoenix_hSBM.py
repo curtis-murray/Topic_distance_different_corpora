@@ -36,7 +36,7 @@ def run_hSBM(texts, titles, sub):
     #gt.seed_rng(32) ## seed for graph-tool's random number generator --> same results
     model.fit()
 
-    for level in range(1,model.L+1):
+    for level in range(0,model.L+1):
 
         group_results = model.get_groups(l = level)
         p_w_tw = group_results['p_w_tw']
