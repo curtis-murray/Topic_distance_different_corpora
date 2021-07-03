@@ -740,6 +740,17 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  Sub = col_character(),
+  Post_ID = col_character(),
+  Title = col_character(),
+  Date = col_date(format = ""),
+  Content = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
 > 
 > # Read all p_w_tw files and get adjacency word-topic matrix, join words, construct full word-topic matrix
 > 
@@ -806,6 +817,13 @@ cols(
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
   X1 = col_double(),
   `0` = col_double(),
   `1` = col_double(),
@@ -829,14 +847,6 @@ cols(
 ── Column specification ────────────────────────────────────────────────────────
 cols(
   X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
   `0` = col_double()
 )
 
@@ -855,41 +865,6 @@ cols(
 )
 ℹ Use `spec()` for the full column specifications.
 
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double(),
-  `5` = col_double(),
-  `6` = col_double(),
-  `7` = col_double(),
-  `8` = col_double(),
-  `9` = col_double(),
-  `10` = col_double(),
-  `11` = col_double(),
-  `12` = col_double(),
-  `13` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_character()
-)
-
-`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -911,14 +886,6 @@ cols(
 ── Column specification ────────────────────────────────────────────────────────
 cols(
   X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
   `0` = col_double()
 )
 
@@ -940,36 +907,10 @@ cols(
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double()
+  .default = col_double()
 )
+ℹ Use `spec()` for the full column specifications.
 
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_character()
-)
-
-`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -991,175 +932,6 @@ cols(
 ── Column specification ────────────────────────────────────────────────────────
 cols(
   X1 = col_double(),
-  `0` = col_character()
-)
-
-`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double(),
-  `5` = col_double(),
-  `6` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_character()
-)
-
-`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double(),
-  `5` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_character()
-)
-
-`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double(),
-  `5` = col_double(),
-  `6` = col_double(),
-  `7` = col_double(),
-  `8` = col_double(),
-  `9` = col_double(),
-  `10` = col_double(),
-  `11` = col_double(),
-  `12` = col_double(),
-  `13` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_character()
-)
-
-`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double(),
-  `5` = col_double(),
-  `6` = col_double(),
-  `7` = col_double(),
-  `8` = col_double(),
-  `9` = col_double(),
-  `10` = col_double(),
-  `11` = col_double(),
-  `12` = col_double(),
-  `13` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_character()
-)
-
-`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
   `0` = col_double()
 )
 
@@ -1178,6 +950,46 @@ cols(
 )
 ℹ Use `spec()` for the full column specifications.
 
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -1214,6 +1026,13 @@ cols(
 )
 
 `summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -1254,16 +1073,20 @@ cols(
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
-  .default = col_double()
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double(),
+  `7` = col_double(),
+  `8` = col_double(),
+  `9` = col_double(),
+  `10` = col_double(),
+  `11` = col_double()
 )
-ℹ Use `spec()` for the full column specifications.
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  .default = col_double()
-)
-ℹ Use `spec()` for the full column specifications.
 
 
 ── Column specification ────────────────────────────────────────────────────────
@@ -1272,9 +1095,14 @@ cols(
   `0` = col_double(),
   `1` = col_double(),
   `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double(),
-  `5` = col_double()
+  `3` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
 )
 
 
@@ -1295,6 +1123,45 @@ cols(
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
   X1 = col_double(),
   `0` = col_double(),
   `1` = col_double(),
@@ -1304,15 +1171,7 @@ cols(
   `5` = col_double(),
   `6` = col_double(),
   `7` = col_double(),
-  `8` = col_double(),
-  `9` = col_double(),
-  `10` = col_double(),
-  `11` = col_double(),
-  `12` = col_double(),
-  `13` = col_double(),
-  `14` = col_double(),
-  `15` = col_double(),
-  `16` = col_double()
+  `8` = col_double()
 )
 
 
@@ -1335,47 +1194,6 @@ cols(
 ── Column specification ────────────────────────────────────────────────────────
 cols(
   X1 = col_double(),
-  `0` = col_character()
-)
-
-`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_character()
-)
-
-`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  .default = col_double()
-)
-ℹ Use `spec()` for the full column specifications.
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
   `0` = col_double()
 )
 
@@ -1391,294 +1209,7 @@ cols(
 ── Column specification ────────────────────────────────────────────────────────
 cols(
   X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double(),
-  `5` = col_double(),
-  `6` = col_double(),
-  `7` = col_double(),
-  `8` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
   `0` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_character()
-)
-
-`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double(),
-  `5` = col_double(),
-  `6` = col_double(),
-  `7` = col_double(),
-  `8` = col_double(),
-  `9` = col_double(),
-  `10` = col_double(),
-  `11` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_character()
-)
-
-`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  .default = col_double()
-)
-ℹ Use `spec()` for the full column specifications.
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double(),
-  `5` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_character()
-)
-
-`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double(),
-  `5` = col_double(),
-  `6` = col_double(),
-  `7` = col_double(),
-  `8` = col_double(),
-  `9` = col_double(),
-  `10` = col_double(),
-  `11` = col_double(),
-  `12` = col_double(),
-  `13` = col_double(),
-  `14` = col_double(),
-  `15` = col_double(),
-  `16` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double(),
-  `5` = col_double(),
-  `6` = col_double(),
-  `7` = col_double(),
-  `8` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_character()
-)
-
-`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  .default = col_double()
-)
-ℹ Use `spec()` for the full column specifications.
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double(),
-  `5` = col_double(),
-  `6` = col_double(),
-  `7` = col_double(),
-  `8` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_character()
-)
-
-`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  .default = col_double()
-)
-ℹ Use `spec()` for the full column specifications.
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double(),
-  `5` = col_double(),
-  `6` = col_double(),
-  `7` = col_double(),
-  `8` = col_double(),
-  `9` = col_double(),
-  `10` = col_double(),
-  `11` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_character()
-)
-
-`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double()
 )
 
 
@@ -1710,46 +1241,6 @@ cols(
 )
 ℹ Use `spec()` for the full column specifications.
 
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  .default = col_double()
-)
-ℹ Use `spec()` for the full column specifications.
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  .default = col_double()
-)
-ℹ Use `spec()` for the full column specifications.
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double(),
-  `1` = col_double(),
-  `2` = col_double(),
-  `3` = col_double(),
-  `4` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_double()
-)
-
-
-── Column specification ────────────────────────────────────────────────────────
-cols(
-  X1 = col_double(),
-  `0` = col_character()
-)
-
-`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
 
 ── Column specification ────────────────────────────────────────────────────────
 cols(
@@ -1797,7 +1288,218 @@ cols(
   `2` = col_double(),
   `3` = col_double(),
   `4` = col_double(),
-  `5` = col_double()
+  `5` = col_double(),
+  `6` = col_double(),
+  `7` = col_double(),
+  `8` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double(),
+  `7` = col_double(),
+  `8` = col_double(),
+  `9` = col_double(),
+  `10` = col_double(),
+  `11` = col_double(),
+  `12` = col_double(),
+  `13` = col_double(),
+  `14` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double()
 )
 
 
@@ -1839,7 +1541,382 @@ cols(
   `2` = col_double(),
   `3` = col_double(),
   `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double(),
+  `7` = col_double(),
+  `8` = col_double(),
+  `9` = col_double(),
+  `10` = col_double(),
+  `11` = col_double(),
+  `12` = col_double(),
+  `13` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double(),
+  `7` = col_double(),
+  `8` = col_double(),
+  `9` = col_double(),
+  `10` = col_double(),
+  `11` = col_double(),
+  `12` = col_double(),
+  `13` = col_double(),
+  `14` = col_double(),
+  `15` = col_double(),
+  `16` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
   `5` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double(),
+  `7` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double(),
+  `7` = col_double(),
+  `8` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double()
 )
 
 
@@ -1885,7 +1962,131 @@ cols(
   `7` = col_double(),
   `8` = col_double(),
   `9` = col_double(),
-  `10` = col_double()
+  `10` = col_double(),
+  `11` = col_double(),
+  `12` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double(),
+  `4` = col_double(),
+  `5` = col_double(),
+  `6` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_character()
+)
+
+`summarise()` has grouped output by 'Sub'. You can override using the `.groups` argument.
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  .default = col_double()
+)
+ℹ Use `spec()` for the full column specifications.
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double(),
+  `1` = col_double(),
+  `2` = col_double(),
+  `3` = col_double()
+)
+
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  X1 = col_double(),
+  `0` = col_double()
 )
 
 
@@ -1907,4 +2108,4 @@ There were 50 or more warnings (use warnings() to see the first 50)
 > 
 > proc.time()
    user  system elapsed 
-154.995  12.042 181.046 
+221.169  10.211 255.543 
