@@ -23,7 +23,7 @@ class sbmtm():
         self.groups = {} ## results of group membership from inference
         self.mdl = np.nan ## minimum description length of inferred state
         self.L = np.nan ## number of levels in hierarchy
-        
+
     def make_graph_from_adj(self, adj):
         '''
         Construcs at Topic-Word network from
@@ -595,6 +595,8 @@ class sbmtm():
         ## Mixture of word-groups into documetns P(t_w | d)
         p_tw_d = (n_dbw/np.sum(n_dbw,axis=1)[:,np.newaxis]).T
 
+        p_td_tw = self.group_to_group_mixture(l=l)
+        p_tw_td = p_td_tw.T
 
         result = {}
         result['Bd'] = Bd
@@ -603,6 +605,7 @@ class sbmtm():
         result['p_td_d'] = p_td_d
         result['p_w_tw'] = p_w_tw
         result['p_tw_d'] = p_tw_d
+        result['p_tw_td'] = p_tw_td
 
         return result
 
@@ -720,7 +723,7 @@ class sbmtm():
             plt.matshow(e.todense())
             plt.savefig("mat_%d.png"%i)
         self.print_summary()
-
+        
     def get_mdl():
         mdl = self.mdl
         return mdl
